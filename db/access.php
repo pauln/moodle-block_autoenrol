@@ -1,5 +1,4 @@
 <?php
-
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -15,8 +14,25 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-$plugin->version   = 2013020501;
-$plugin->release   = "1.0";
-$plugin->maturity  = MATURITY_STABLE;
-$plugin->requires  = 2012062500;
-$plugin->component = 'block_autoenrol';
+/**
+ * autoenrol block caps.
+ *
+ * @package    block_autoenrol
+ * @copyright  Paul Nicholls, 2013
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
+defined('MOODLE_INTERNAL') || die();
+
+$capabilities = array(
+    'block/autoenrol:addinstance' => array(
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_BLOCK,
+        'archetypes' => array(
+            'editingteacher' => CAP_ALLOW,
+            'manager' => CAP_ALLOW
+        ),
+
+        'clonepermissionsfrom' => 'moodle/site:manageblocks'
+    ),
+);
